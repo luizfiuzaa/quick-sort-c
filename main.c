@@ -32,9 +32,9 @@ void imprimirVetor(int vetor[], int tamanho){
 
 
 void swap(int vetor[], int pos_1, int pos_2){
-	int aux = pos_1;
+	int aux = vetor[pos_1];
 	vetor[pos_1] = vetor[pos_2];
-	vetor[pos_2] = vetor[aux];
+	vetor[pos_2] = aux;
 }
 
 int particiona(int vetor[], int left, int right){
