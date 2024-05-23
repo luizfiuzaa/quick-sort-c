@@ -1,51 +1,60 @@
 #include <stdio.h>
 #include<stdbool.h>
 #include <time.h>
+#include <stdlib.h>
+
 #define TAM 6
 #define N_intervalo 100
 
 
-int gera_numero(int intervalo)
-{   int numero;
+int gera_numero(int intervalo){
+	int numero;
 	numero = rand()%intervalo;
 	return numero;
 }
 
-void gera_vetor_aleat(int vetor[], int tamanho, int intervalo)
-{   int cont;
-    for (cont = 0; cont < tamanho; cont++) {
-        vetor[cont] = gera_numero(intervalo);
+void gera_vetor_aleat(int vetor[], int tamanho, int intervalo){
+	int cont;
+    	for (cont = 0; cont < tamanho; cont++){
+		vetor[cont] = gera_numero(intervalo);
     }	
 }
 
 // Função para imprimir os elementos de um vetor
-void imprimirVetor(int vetor[], int tamanho) {
+void imprimirVetor(int vetor[], int tamanho){
 	int cont;
-    printf("Elementos do vetor:\n");
-    for (cont = 0; cont < tamanho; cont++) {
-        printf("\n [%d]  - %d ", cont, vetor[cont]);
-    }
+	printf("Elementos do vetor:\n");
+	for (cont = 0; cont < tamanho; cont++){
+		printf("\n [%d]  - %d ", cont, vetor[cont]);
+	}
     printf("\n");
 }
 
 
-void swap(int vetor[], int pos_1, int pos_2)
-{
-  int aux = pos_1;
-  vetor[pos_1] = vetor[pos_2];
-  vetor[pos_2] = vetor[aux];
+void swap(int vetor[], int pos_1, int pos_2){
+	int aux = pos_1;
+	vetor[pos_1] = vetor[pos_2];
+	vetor[pos_2] = vetor[aux];
 }
 
-int particiona(int vetor[], int left, int right) 
-{
+int particiona(int vetor[], int left, int right){
+	
+	int pivo = vetor[left];
+	int i = left + 1;
+	for(int j = left + 1; j <= right; j++){
+		if(vetor[j] <= pivo){
+			swap(vetor,i,j);
+			i++;
+		}
+	}
+
+	swap(vetor,left,i - 1);
     
-    
-    return 0; 
+    return i - 1; 
 }
 
 
-void ordenacao_quick(int vetor[], int left, int right)
-{
+void ordenacao_quick(int vetor[], int left, int right){
    
    if (left < right){
 	    int index_pivot = particiona(vetor, left, right);
